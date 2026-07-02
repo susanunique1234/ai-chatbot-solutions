@@ -1,0 +1,276 @@
+# AI-Solutions Website System
+
+## Project Overview
+
+The AI-Solutions Website System is a responsive web application developed as part of the **CET333 Product Development** module at the **University of Sunderland**. The project was developed using the Waterfall Software Development Methodology and provides an online platform for showcasing AI-powered software development services.
+
+The website enables visitors to explore company information, services, projects, blogs, events, testimonials, and gallery content while allowing administrators to manage website content through a secure administration panel. An AI-powered chatbot has also been integrated to provide automated customer support.
+
+---
+API KEY =  YOUR_API_KEY
+
+## Features
+
+### Customer Features
+
+- Home Page
+- About Us
+- Services
+- Projects
+- Blog
+- Gallery
+- Events
+- Testimonials
+- Feedback Form
+- Contact Form
+- AI Chatbot
+- Responsive Design
+
+### Administrator Features
+
+- Secure Admin Login
+- Dashboard
+- Manage Services
+- Manage Projects
+- Manage Blogs
+- Manage Gallery
+- Manage Events
+- Manage Testimonials
+- Manage Feedback
+- Manage Contact Enquiries
+
+---
+
+## Technologies Used
+
+### Frontend
+
+- HTML5
+- CSS3
+- Bootstrap 5
+- JavaScript
+
+### Backend
+
+- PHP
+
+### Database
+
+- PostgreSQL
+
+### AI Integration
+
+- Google Gemini API
+
+### Development Tools
+
+- Visual Studio Code
+- XAMPP
+- pgAdmin
+- Git
+- GitHub
+- Figma
+
+---
+
+## Project Structure
+
+```
+ai-chatbot-solutions/
+│
+├── admin/
+├── assets/
+│   ├── chatbot/
+│   ├── css/
+│   ├── images/
+│   └── js/
+│
+├── config/
+├── database/
+│   └── ai_solutions.sql
+│
+├── includes/
+├── pages/
+│
+├── index.php
+├── README.md
+└── .gitignore
+```
+
+---
+
+## Installation Guide
+
+### Step 1
+
+Clone the repository.
+
+```
+git clone https://github.com/susankhadka1234/ai-chatbot-solutions.git
+```
+
+### Step 2
+
+Move the project folder into the **htdocs** directory of XAMPP.
+
+Example:
+
+```
+C:\xampp\htdocs\ai-chatbot-solutions
+```
+
+### Step 3
+
+Create a PostgreSQL database.
+
+Database Name
+
+```
+ai_solutions
+```
+
+### Step 4
+
+Import the SQL database.
+
+```
+database/ai_solutions.sql
+```
+
+### Step 5
+
+Configure the database connection inside:
+
+```
+config/database.php
+```
+
+Example:
+
+```php
+$host = "localhost";
+$dbname = "ai_solutions";
+$user = "postgres";
+$password = "SUsan@12#$%";
+```
+
+### Step 6
+
+Start Apache from XAMPP.
+
+### Step 7
+
+Open your browser.
+
+```
+http://localhost/ai-chatbot-solutions/
+```
+
+---
+
+## Administrator Login
+
+Use the administrator account created inside the database.
+
+Example
+
+```
+Email:
+susankhadka@ismt.com
+
+Password:
+SUsan@12#$%
+```
+
+(Change according to your database.)
+
+---
+
+## AI Chatbot
+
+The website includes an AI-powered chatbot developed using the Google Gemini API.
+
+The chatbot provides responses related to:
+
+- Company Information
+- Services
+- Projects
+- Blogs
+- Events
+- Gallery
+- Testimonials
+- Feedback
+- Contact Details
+- Website Development
+- Software Development
+- AI Chatbots
+- Business Automation
+
+---
+
+## Testing
+
+The system has been tested using:
+
+- Functional Testing
+- Non-Functional Testing
+- Responsive Testing
+- Browser Compatibility Testing
+- Database Testing
+- AI Chatbot Testing
+
+---
+
+## Browser Compatibility
+
+The website has been tested on:
+
+- Google Chrome
+- Microsoft Edge
+- Mozilla Firefox
+
+---
+
+## Development Methodology
+
+This project follows the **Waterfall Software Development Methodology** consisting of:
+
+1. Requirements Analysis and Planning
+2. System Design
+3. System Development and Implementation
+4. Testing and Validation
+5. Critical Evaluation
+
+---
+
+## Project Timeline
+
+| Activity | Status |
+|-----------|--------|
+| Requirements Analysis | ✔ Completed |
+| Planning Documentation | ✔ Completed |
+| System Design | ✔ Completed |
+| Development | ✔ Completed |
+| Testing | ✔ Completed |
+| Deployment | ✔ Completed |
+| Evaluation | ✔ Completed |
+
+---
+
+## Author
+
+**Susan Khadka**
+
+Computer Systems Engineering (Top-Up)
+
+University of Sunderland
+
+Module: CET333 Product Development
+
+Academic Year: 2025–2026
+
+---
+
+## License
+
+This project was developed for academic purposes as part of the **CET333 Product Development** module at the **University of Sunderland**.

@@ -1,0 +1,792 @@
+--
+-- PostgreSQL database dump
+--
+
+\restrict C1lpRAW5JFbEStfcTTztUaVYwXttVZhJiLWyWWREbDz1dx8ZG6wYJIQTBaAh1SO
+
+-- Dumped from database version 18.3
+-- Dumped by pg_dump version 18.3
+
+-- Started on 2026-07-02 08:10:21
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 4 (class 2615 OID 2200)
+-- Name: public; Type: SCHEMA; Schema: -; Owner: pg_database_owner
+--
+
+CREATE SCHEMA public;
+
+
+ALTER SCHEMA public OWNER TO pg_database_owner;
+
+--
+-- TOC entry 5105 (class 0 OID 0)
+-- Dependencies: 4
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 234 (class 1259 OID 17300)
+-- Name: admin_logs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.admin_logs (
+    id integer NOT NULL,
+    action text,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.admin_logs OWNER TO postgres;
+
+--
+-- TOC entry 233 (class 1259 OID 17299)
+-- Name: admin_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.admin_logs_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.admin_logs_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5106 (class 0 OID 0)
+-- Dependencies: 233
+-- Name: admin_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.admin_logs_id_seq OWNED BY public.admin_logs.id;
+
+
+--
+-- TOC entry 226 (class 1259 OID 17239)
+-- Name: blogs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.blogs (
+    id integer NOT NULL,
+    title character varying(255) NOT NULL,
+    description text NOT NULL,
+    image text,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.blogs OWNER TO postgres;
+
+--
+-- TOC entry 225 (class 1259 OID 17238)
+-- Name: blogs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.blogs_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.blogs_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5107 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: blogs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.blogs_id_seq OWNED BY public.blogs.id;
+
+
+--
+-- TOC entry 232 (class 1259 OID 17287)
+-- Name: contact_messages; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.contact_messages (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    phone character varying(50),
+    company_name character varying(255),
+    country character varying(150),
+    job_title character varying(255),
+    job_details text,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.contact_messages OWNER TO postgres;
+
+--
+-- TOC entry 231 (class 1259 OID 17286)
+-- Name: contact_messages_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.contact_messages_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.contact_messages_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5108 (class 0 OID 0)
+-- Dependencies: 231
+-- Name: contact_messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.contact_messages_id_seq OWNED BY public.contact_messages.id;
+
+
+--
+-- TOC entry 230 (class 1259 OID 17265)
+-- Name: events; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.events (
+    id integer NOT NULL,
+    title character varying(255),
+    description text,
+    event_date date,
+    image character varying(255),
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.events OWNER TO postgres;
+
+--
+-- TOC entry 229 (class 1259 OID 17264)
+-- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.events_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.events_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5109 (class 0 OID 0)
+-- Dependencies: 229
+-- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.events_id_seq OWNED BY public.events.id;
+
+
+--
+-- TOC entry 236 (class 1259 OID 17311)
+-- Name: feedback; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.feedback (
+    id integer NOT NULL,
+    customer_name character varying(255),
+    company_name character varying(255),
+    message text,
+    rating integer,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.feedback OWNER TO postgres;
+
+--
+-- TOC entry 235 (class 1259 OID 17310)
+-- Name: feedback_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.feedback_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.feedback_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5110 (class 0 OID 0)
+-- Dependencies: 235
+-- Name: feedback_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.feedback_id_seq OWNED BY public.feedback.id;
+
+
+--
+-- TOC entry 228 (class 1259 OID 17252)
+-- Name: gallery; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.gallery (
+    id integer NOT NULL,
+    title character varying(255),
+    image text NOT NULL,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.gallery OWNER TO postgres;
+
+--
+-- TOC entry 227 (class 1259 OID 17251)
+-- Name: gallery_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.gallery_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.gallery_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5111 (class 0 OID 0)
+-- Dependencies: 227
+-- Name: gallery_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.gallery_id_seq OWNED BY public.gallery.id;
+
+
+--
+-- TOC entry 224 (class 1259 OID 17226)
+-- Name: projects; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.projects (
+    id integer NOT NULL,
+    title character varying(255) NOT NULL,
+    description text NOT NULL,
+    image text,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.projects OWNER TO postgres;
+
+--
+-- TOC entry 223 (class 1259 OID 17225)
+-- Name: projects_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.projects_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.projects_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5112 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.projects_id_seq OWNED BY public.projects.id;
+
+
+--
+-- TOC entry 222 (class 1259 OID 17213)
+-- Name: services; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.services (
+    id integer NOT NULL,
+    title character varying(255) NOT NULL,
+    description text NOT NULL,
+    image text,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.services OWNER TO postgres;
+
+--
+-- TOC entry 221 (class 1259 OID 17212)
+-- Name: services_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.services_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.services_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5113 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: services_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.services_id_seq OWNED BY public.services.id;
+
+
+--
+-- TOC entry 220 (class 1259 OID 17147)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    name character varying(100) NOT NULL,
+    email character varying(100) NOT NULL,
+    password character varying(255) NOT NULL,
+    role character varying(20) DEFAULT 'admin'::character varying,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 219 (class 1259 OID 17146)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.users_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 5114 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- TOC entry 4911 (class 2604 OID 17303)
+-- Name: admin_logs id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.admin_logs ALTER COLUMN id SET DEFAULT nextval('public.admin_logs_id_seq'::regclass);
+
+
+--
+-- TOC entry 4903 (class 2604 OID 17242)
+-- Name: blogs id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs ALTER COLUMN id SET DEFAULT nextval('public.blogs_id_seq'::regclass);
+
+
+--
+-- TOC entry 4909 (class 2604 OID 17290)
+-- Name: contact_messages id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_messages ALTER COLUMN id SET DEFAULT nextval('public.contact_messages_id_seq'::regclass);
+
+
+--
+-- TOC entry 4907 (class 2604 OID 17268)
+-- Name: events id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.events ALTER COLUMN id SET DEFAULT nextval('public.events_id_seq'::regclass);
+
+
+--
+-- TOC entry 4913 (class 2604 OID 17314)
+-- Name: feedback id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.feedback ALTER COLUMN id SET DEFAULT nextval('public.feedback_id_seq'::regclass);
+
+
+--
+-- TOC entry 4905 (class 2604 OID 17255)
+-- Name: gallery id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.gallery ALTER COLUMN id SET DEFAULT nextval('public.gallery_id_seq'::regclass);
+
+
+--
+-- TOC entry 4901 (class 2604 OID 17229)
+-- Name: projects id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.projects ALTER COLUMN id SET DEFAULT nextval('public.projects_id_seq'::regclass);
+
+
+--
+-- TOC entry 4899 (class 2604 OID 17216)
+-- Name: services id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.services ALTER COLUMN id SET DEFAULT nextval('public.services_id_seq'::regclass);
+
+
+--
+-- TOC entry 4896 (class 2604 OID 17150)
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- TOC entry 5097 (class 0 OID 17300)
+-- Dependencies: 234
+-- Data for Name: admin_logs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.admin_logs (id, action, created_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 5089 (class 0 OID 17239)
+-- Dependencies: 226
+-- Data for Name: blogs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.blogs (id, title, description, image, created_at) FROM stdin;
+1	OpenAI Blog	A primary source for major product launches (like GPT models), artificial general intelligence (AGI) research, and corporate updates. It is ideal for staying up-to-date with generative AI.	ai13.jpg	2026-06-04 16:31:16.980913
+2	Google DeepMind Blog	Details state-of-the-art research in deep learning, neuroscience, and AI software solutions designed to tackle society's biggest challenges.	ai14.jpg	2026-06-04 16:32:47.814412
+3	AWS Machine Learning Blog	Focuses on applied AI/ML in the enterprise. It provides technical tutorials, scalable AI solutions, and cloud infrastructure insights for developers and IT professionals.	ai15.jpg	2026-06-04 16:33:51.019228
+4	Hugging Face Blog	The go-to hub for open-source AI models, natural language processing (NLP) breakthroughs, and community-driven research.	ai16.jpg	2026-06-04 16:34:49.071662
+\.
+
+
+--
+-- TOC entry 5095 (class 0 OID 17287)
+-- Dependencies: 232
+-- Data for Name: contact_messages; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.contact_messages (id, name, email, phone, company_name, country, job_title, job_details, created_at) FROM stdin;
+2	krishna ram	krishnaram@gmail.com	98415236454	INSIDE	USA	IT	I need the IT related job	2026-06-28 15:38:16.075356
+3	Rita Phuyal	ritaphuyal@gmail.com	9841523565	Dental	Canada	Medical	I have the knowledge of dental field.	2026-06-29 15:35:56.428274
+4	Rion Thapa	rion@gmail.com	9841256523	Leo	France	Psychological	I am a psychological searching.	2026-06-29 15:53:24.6058
+\.
+
+
+--
+-- TOC entry 5093 (class 0 OID 17265)
+-- Dependencies: 230
+-- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.events (id, title, description, event_date, image, created_at) FROM stdin;
+1	Ai4 2026	As the epicenter of the global AI community, this event unites business executives and technology leaders to explore real-world applications and proven best practices across various industries. From AI agents and generative models to responsible human-machine collaboration, it is tailored for driving practical AI solutions forward.	2026-06-01	ai17.jpg	2026-06-04 16:37:33.990875
+2	The AI Conference 2026	Hosted in San Francisco, this conference bridges the gap between AI research and production. It is designed for engineers, researchers, and operators, featuring five tracks spanning applied AI, infrastructure, and product. Attendees can participate in keynotes, an expanded innovation hub, and the Startup Showdown.	2026-06-02	ai18.png	2026-06-04 16:38:40.716521
+3	AI & Big Data Expo Global 2026	Returning to Olympia London, this massive enterprise-focused event sits at the intersection of business strategy and technology execution. It offers thousands of professionals direct interaction with vendors and solution providers, featuring practical case studies and live demos of intelligent automation.	2026-05-31	ai19.webp	2026-06-04 16:39:55.903081
+4	Global AI Show Riyadh 2026	Held at the Crowne Plaza Riyadh RDC Hotel & Convention, KSA, this major exhibition highlights cutting-edge AI solutions driving intelligent transformation across commercial sectors. It provides an excellent platform for networking, exploring emerging technologies, and discovering scalable growth frameworks.	2026-05-01	ai20.jpg	2026-06-04 16:41:05.367218
+5	AI Integration	This is Ai integration part.	2026-06-18	ai20.jpg	2026-06-29 15:56:18.101782
+\.
+
+
+--
+-- TOC entry 5099 (class 0 OID 17311)
+-- Dependencies: 236
+-- Data for Name: feedback; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.feedback (id, customer_name, company_name, message, rating, created_at) FROM stdin;
+1	susan khadka	ismt	its nice to view all the review.	5	2026-06-04 21:25:23.119759
+2	hari khadka	Global	This is an excellent job.	5	2026-06-28 15:36:09.997949
+3	krishna thapa	Infinite	This is a tremendous job.	5	2026-06-28 15:37:01.866518
+4	krishna thapa	Infinite	This is a tremendous job.	5	2026-06-28 15:38:26.563049
+5	mina thapa	Heaven	This is a heaven part	5	2026-06-29 15:34:16.634357
+6	Riken Thapa	REunion	This is reunion part.	5	2026-06-29 15:51:41.017213
+7	Jiten Khadka	Jira	This is Jiten	5	2026-06-29 15:55:06.839393
+\.
+
+
+--
+-- TOC entry 5091 (class 0 OID 17252)
+-- Dependencies: 228
+-- Data for Name: gallery; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.gallery (id, title, image, created_at) FROM stdin;
+1	AI Customer Support Chatbots	ai9.webp	2026-06-04 16:25:08.404453
+2	Generative AI Art & Design	ai10.jpg	2026-06-04 16:26:13.702032
+3	Automated Inventory & Logistics	ai11.jpg	2026-06-04 16:27:26.21676
+4	Generative Media Production	ai12.avif	2026-06-04 16:28:14.814938
+\.
+
+
+--
+-- TOC entry 5087 (class 0 OID 17226)
+-- Dependencies: 224
+-- Data for Name: projects; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.projects (id, title, description, image, created_at) FROM stdin;
+1	AI Customer Support & Knowledge Agent	An intelligent chatbot powered by Retrieval-Augmented Generation (RAG) that connects to your company's knowledge base or documentation. It can answer 24/7, handle complex user queries, resolve issues, and securely route unresolvable problems to human support staff.	ai5.webp	2026-06-04 16:15:53.239916
+2	Document Parser & Agentic Data Analyzer	An automated workflow that extracts, processes, and summarizes information from heavy documents like invoices, contracts, or financial reports. This project reduces manual data entry and helps non-technical users query specific information from vast databases using simple text prompts.	ai6.webp	2026-06-04 16:17:13.981245
+3	Customer Support Multi-Agent System	An intelligent workflow where AI agents handle 24/7 inquiries, bookings, and customer feedback. These memory-aware systems can remember past interactions, retrieve contextual data, and utilize external tools for informed decision-making.	ai7.jpg	2026-06-04 16:18:43.926253
+4	Code Review Agent	Build an AI assistant that integrates with your version control systems to read pull requests, automatically check for bugs, flag security vulnerabilities, and suggest code optimizations before human reviewers merge the code.	ai8.webp	2026-06-04 16:19:48.932461
+\.
+
+
+--
+-- TOC entry 5085 (class 0 OID 17213)
+-- Dependencies: 222
+-- Data for Name: services; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.services (id, title, description, image, created_at) FROM stdin;
+1	Generative AI Content Creation	Employs large language models and multi-modal systems to instantly generate marketing copy, social media posts, and customized corporate content.	ai1.jpg	2026-06-04 16:06:12.539183
+2	Conversational AI & Chatbots	AI-powered virtual assistants that handle customer inquiries around the clock. They understand natural language to answer FAQs, route tickets, and resolve routine issues instantly.	ai2.avif	2026-06-04 16:10:22.934966
+4	Computer Vision for Visual AI	Uses algorithms to automatically analyze and classify images or videos for content moderation, document understanding, and automated product tagging.	ai4.png	2026-06-04 16:12:25.715225
+3	Generative AI Brand Content	AI systems capable of producing original text, marketing copy, and synthetic visual designs based on natural language text prompts.	ai3.jpeg	2026-06-04 16:11:43.015331
+\.
+
+
+--
+-- TOC entry 5083 (class 0 OID 17147)
+-- Dependencies: 220
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, name, email, password, role, created_at) FROM stdin;
+2	Admin	susankhadka@ismt.com	$2y$10$lKyQ/NJ9gT8ia7OA6yhQSefjTZbnjJI2tBRJfkVGd6mv.5qB9y1Pi	admin	2026-05-26 21:56:19.055709
+\.
+
+
+--
+-- TOC entry 5115 (class 0 OID 0)
+-- Dependencies: 233
+-- Name: admin_logs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.admin_logs_id_seq', 1, false);
+
+
+--
+-- TOC entry 5116 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: blogs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.blogs_id_seq', 4, true);
+
+
+--
+-- TOC entry 5117 (class 0 OID 0)
+-- Dependencies: 231
+-- Name: contact_messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.contact_messages_id_seq', 4, true);
+
+
+--
+-- TOC entry 5118 (class 0 OID 0)
+-- Dependencies: 229
+-- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.events_id_seq', 5, true);
+
+
+--
+-- TOC entry 5119 (class 0 OID 0)
+-- Dependencies: 235
+-- Name: feedback_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.feedback_id_seq', 7, true);
+
+
+--
+-- TOC entry 5120 (class 0 OID 0)
+-- Dependencies: 227
+-- Name: gallery_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.gallery_id_seq', 4, true);
+
+
+--
+-- TOC entry 5121 (class 0 OID 0)
+-- Dependencies: 223
+-- Name: projects_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.projects_id_seq', 4, true);
+
+
+--
+-- TOC entry 5122 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: services_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.services_id_seq', 4, true);
+
+
+--
+-- TOC entry 5123 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 2, true);
+
+
+--
+-- TOC entry 4932 (class 2606 OID 17309)
+-- Name: admin_logs admin_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.admin_logs
+    ADD CONSTRAINT admin_logs_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4924 (class 2606 OID 17250)
+-- Name: blogs blogs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.blogs
+    ADD CONSTRAINT blogs_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4930 (class 2606 OID 17298)
+-- Name: contact_messages contact_messages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_messages
+    ADD CONSTRAINT contact_messages_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4928 (class 2606 OID 17274)
+-- Name: events events_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.events
+    ADD CONSTRAINT events_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4934 (class 2606 OID 17320)
+-- Name: feedback feedback_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.feedback
+    ADD CONSTRAINT feedback_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4926 (class 2606 OID 17262)
+-- Name: gallery gallery_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.gallery
+    ADD CONSTRAINT gallery_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4922 (class 2606 OID 17237)
+-- Name: projects projects_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.projects
+    ADD CONSTRAINT projects_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4920 (class 2606 OID 17224)
+-- Name: services services_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.services
+    ADD CONSTRAINT services_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4916 (class 2606 OID 17160)
+-- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_key UNIQUE (email);
+
+
+--
+-- TOC entry 4918 (class 2606 OID 17158)
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+-- Completed on 2026-07-02 08:10:22
+
+--
+-- PostgreSQL database dump complete
+--
+
+\unrestrict C1lpRAW5JFbEStfcTTztUaVYwXttVZhJiLWyWWREbDz1dx8ZG6wYJIQTBaAh1SO
+

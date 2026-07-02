@@ -151,7 +151,7 @@ Example:
 $host = "localhost";
 $dbname = "ai_solutions";
 $user = "postgres";
-$password = "SUsan@12#$%";
+$password = "susan123";
 ```
 
 ### Step 6
@@ -179,7 +179,7 @@ Email:
 susankhadka@ismt.com
 
 Password:
-SUsan@12#$%
+susan123
 ```
 
 (Change according to your database.)
